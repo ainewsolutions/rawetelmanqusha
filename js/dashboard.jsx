@@ -501,22 +501,10 @@ function DashboardSettings({ settings, setSettings }) {
     }
   }
 
-  function setSocial(key, val) {
-    setForm({ ...form, ["social" + key]: val });
-  }
-
   const field = (label, value, onChange, dir) => (
     <div>
       <label className="text-xs font-bold text-gray-500 mb-1 block">{label}</label>
       <input value={value || ""} onChange={(e) => onChange(e.target.value)} dir={dir || "rtl"} className="w-full border border-gray-200 rounded-lg p-2.5 text-sm" />
-    </div>
-  );
-
-  const textareaField = (label, value, onChange, hint) => (
-    <div>
-      <label className="text-xs font-bold text-gray-500 mb-1 block">{label}</label>
-      {hint && <p className="text-[11px] text-gray-400 mb-1">{hint}</p>}
-      <textarea value={value || ""} onChange={(e) => onChange(e.target.value)} dir="ltr" rows={4} className="w-full border border-gray-200 rounded-lg p-2.5 text-xs font-mono" />
     </div>
   );
 
@@ -551,20 +539,6 @@ function DashboardSettings({ settings, setSettings }) {
         {field("رقم الهاتف (يظهر في أسفل الصفحة)", form.phone, (v) => setForm({ ...form, phone: v }), "ltr")}
         {field("العنوان (يظهر في أسفل الصفحة)", form.address, (v) => setForm({ ...form, address: v }), "rtl")}
         {field("رابط خرائط جوجل", form.googleMapsUrl, (v) => setForm({ ...form, googleMapsUrl: v }), "ltr")}
-        {field("رابط تقييم جوجل (كارت \"قيّمنا على جوجل\")", form.googleReviewUrl, (v) => setForm({ ...form, googleReviewUrl: v }), "ltr")}
-        {textareaField(
-          "كود تضمين تقييمات جوجل (Embed Code)",
-          form.googleReviewsEmbed,
-          (v) => setForm({ ...form, googleReviewsEmbed: v }),
-          "من خدمة مجانية زي Elfsight أو EmbedSocial: اربط صفحة نشاطك التجاري على جوجل مرة واحدة هناك، وهما بيوفروا لك كود تضمين، الصقه هنا وهيظهر تلقائي ويتحدث لوحده من غير أي تدخل منك."
-        )}
-        {field("رابط Google Play", form.googlePlayUrl, (v) => setForm({ ...form, googlePlayUrl: v }), "ltr")}
-        {field("رابط App Store", form.appStoreUrl, (v) => setForm({ ...form, appStoreUrl: v }), "ltr")}
-        {field("واتساب (سوشيال)", form.socialWhatsapp, (v) => setSocial("Whatsapp", v), "ltr")}
-        {field("فيسبوك", form.socialFacebook, (v) => setSocial("Facebook", v), "ltr")}
-        {field("تيك توك", form.socialTiktok, (v) => setSocial("Tiktok", v), "ltr")}
-        {field("انستجرام", form.socialInstagram, (v) => setSocial("Instagram", v), "ltr")}
-        {field("إكس / تويتر", form.socialTwitter, (v) => setSocial("Twitter", v), "ltr")}
         <button disabled={saving} onClick={save} className="bg-samaq-green disabled:opacity-60 text-white rounded-xl py-2.5 font-bold mt-2">
           {saving ? "جارِ الحفظ..." : "حفظ الإعدادات"}
         </button>

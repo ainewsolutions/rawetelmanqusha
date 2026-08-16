@@ -36,75 +36,14 @@ function StarRow({ rating }) {
   );
 }
 
-// بيشغّل أي كود تضمين (embed) خارجي — زي ودجت تقييمات جوجل من خدمة
-// مجانية (Elfsight / EmbedSocial وغيرها) — بيفصل عناصر <script> ويحقنها
-// بشكل يخلّيها تتنفذ فعليًا (React مش بينفذ script جوه dangerouslySetInnerHTML لوحدها)
-function EmbedBlock({ html }) {
-  const ref = useRef(null);
-  useEffect(() => {
-    if (!ref.current || !html) return;
-    ref.current.innerHTML = "";
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = html;
-    Array.from(wrapper.childNodes).forEach((node) => {
-      if (node.tagName === "SCRIPT") {
-        const s = document.createElement("script");
-        Array.from(node.attributes).forEach((a) => s.setAttribute(a.name, a.value));
-        s.text = node.textContent;
-        ref.current.appendChild(s);
-      } else {
-        ref.current.appendChild(node.cloneNode(true));
-      }
-    });
-  }, [html]);
-  return <div ref={ref} className="w-full max-w-md" />;
-}
-
 function Footer({ settings }) {
-  const social = [
-    { key: "whatsapp", url: settings.socialWhatsapp, Icon: IconWhatsapp },
-    { key: "facebook", url: settings.socialFacebook, Icon: IconFacebook },
-    { key: "tiktok", url: settings.socialTiktok, Icon: IconTiktok },
-    { key: "instagram", url: settings.socialInstagram, Icon: IconInstagram },
-    { key: "twitter", url: settings.socialTwitter, Icon: IconTwitterX },
-  ].filter((s) => s.url && s.url.trim());
-
-  const hasStore = settings.googlePlayUrl || settings.appStoreUrl;
-
   return (
     <footer className="no-print bg-[#2e2013] text-white pt-10 pb-8 mt-6">
       <div className="max-w-5xl mx-auto px-6 flex flex-col items-center gap-8 text-center">
-        {social.length > 0 && (
-          <div>
-            <p className="font-display text-2xl mb-4 text-samaq-gold">تابعنا</p>
-            <div className="flex items-center gap-3 justify-center">
-              {social.map(({ key, url, Icon }) => (
-                <a key={key} href={url} target="_blank" rel="noreferrer" className="social-btn"><Icon className="w-5 h-5" /></a>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {settings.googleReviewsEmbed && settings.googleReviewsEmbed.trim() && (
-          <div className="w-full flex flex-col items-center gap-3">
-            <p className="font-display text-2xl text-samaq-gold">تقييمنا على جوجل</p>
-            <EmbedBlock html={settings.googleReviewsEmbed} />
-          </div>
-        )}
-
-        {(settings.googleMapsUrl || settings.googleReviewUrl) && (
-          <div className="flex items-center gap-3 flex-wrap justify-center">
-            {settings.googleMapsUrl && (
-              <a href={settings.googleMapsUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-white/10 hover:bg-white/20 transition rounded-full px-5 py-2.5 text-sm font-bold">
-                <IconMap className="w-4 h-4" /> موقعنا على الخريطة
-              </a>
-            )}
-            {settings.googleReviewUrl && (
-              <a href={settings.googleReviewUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-samaq-gold/90 hover:bg-samaq-gold transition rounded-full px-5 py-2.5 text-sm font-bold text-[#2e2013]">
-                <IconStar className="w-4 h-4" /> قيّمنا على جوجل
-              </a>
-            )}
-          </div>
+        {settings.googleMapsUrl && (
+          <a href={settings.googleMapsUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-white/10 hover:bg-white/20 transition rounded-full px-5 py-2.5 text-sm font-bold">
+            <IconMap className="w-4 h-4" /> موقعنا على الخريطة
+          </a>
         )}
 
         <div className="flex flex-col items-center gap-1.5 text-sm text-white/80">
@@ -115,32 +54,6 @@ function Footer({ settings }) {
             </a>
           )}
         </div>
-
-        {hasStore && (
-          <div>
-            <p className="font-display text-2xl mb-4 text-samaq-gold">حمّل التطبيق</p>
-            <div className="flex items-center gap-4 flex-wrap justify-center">
-              {settings.googlePlayUrl && (
-                <a href={settings.googlePlayUrl} target="_blank" rel="noreferrer" className="store-btn">
-                  <IconPlay className="w-6 h-6" />
-                  <span className="text-right leading-tight">
-                    <span className="block text-[10px] text-gray-300">GET IT ON</span>
-                    <span className="block text-sm font-bold -mt-0.5">Google Play</span>
-                  </span>
-                </a>
-              )}
-              {settings.appStoreUrl && (
-                <a href={settings.appStoreUrl} target="_blank" rel="noreferrer" className="store-btn">
-                  <IconApple className="w-6 h-6" />
-                  <span className="text-right leading-tight">
-                    <span className="block text-[10px] text-gray-300">Download on the</span>
-                    <span className="block text-sm font-bold -mt-0.5">App Store</span>
-                  </span>
-                </a>
-              )}
-            </div>
-          </div>
-        )}
 
         <p className="text-[11px] text-white/40">© {new Date().getFullYear()} روعة المنقوشة — جميع الحقوق محفوظة</p>
       </div>
