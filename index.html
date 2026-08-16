@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>روعة المنقوشة — منيو الطلب أونلاين</title>
+<meta name="description" content="روعة المنقوشة — مشاوي وفطائر ومناقيش، اطلب الآن عبر واتساب" />
+
+<!-- خطوط عربية: Rakkas خط عرض احتفالي مميز للعناوين (زي المنيوهات
+     المطبوعة الفاخرة)، و Cairo/Tajawal للنصوص العادية -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Cairo:wght@400;600;800&family=Rakkas&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS (CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          "samaq-green": "#A47C43",
+          "samaq-blue": "#5C4326",
+          "samaq-gold": "#C9A227",
+        },
+        fontFamily: {
+          sans: ["Cairo", "Tajawal", "sans-serif"],
+          display: ["Rakkas", "Cairo", "sans-serif"],
+        },
+      },
+    },
+  };
+</script>
+
+<!-- React + Babel (لتشغيل JSX مباشرة في المتصفح، بدون خطوة Build) -->
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<div id="root"></div>
+
+<!-- طبقة البيانات (Google Sheets عن طريق Apps Script) -->
+<script src="js/config.js"></script>
+<script src="js/dataService.js"></script>
+
+<!-- Components (JSX) — بيتم تحميلهم وتحويلهم بواسطة Babel standalone
+     يدويًا بالترتيب (loader.js) بدل الفحص التلقائي، عشان نضمن استخدام
+     الـ classic JSX runtime (React.createElement) بدل الـ automatic runtime
+     اللي بيحقن "import" وده مش شغال في سكريبت عادي بره type="module". -->
+<script src="js/loader.js"></script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+/* ============================================================
+   روعة المنقوشة — Custom Styles
+   هوية بصرية دافئة: كريمي / بني / ذهبي — بنفس روح منيو
+   "الحلبي طايب" المرجعي (نفس الألوان)، مع لمسة فخامة للفطائر والمشاوي.
+   ============================================================ */
+
+:root {
+  --samaq-green: #A47C43;        /* بني ذهبي دافئ (أساسي/أزرار/أسعار) */
+  --samaq-green-dark: #8B6735;   /* هوفر */
+  --samaq-blue: #5C4326;         /* بني غامق (ثانوي/عناوين/هيدر) */
+  --samaq-blue-dark: #402F1C;
+  --samaq-sky: #C9A66B;          /* ذهبي فاتح (لمسات وتدرجات) */
+  --samaq-gold: #C9A227;         /* ذهبي مميز للشارات والنجوم والخطوط الفاصلة */
+  --samaq-gold-light: #E9D9A0;
+  --samaq-maroon: #3E2F1D;       /* لون الهيدر/الفوتر الغامق (بني عميق فاخر) */
+  --samaq-black: #4A3B2C;        /* بني غامق للنصوص الأساسية */
+  --samaq-white: #FFFFFF;
+  --samaq-cream: #F7EED7;        /* خلفية الصفحة الكريمية */
+  --samaq-card: #FFFFFF;         /* خلفية الكروت — أبيض نضيف */
+  --samaq-border: #D8C8A7;       /* حدود بيچ فاتحة */
+  --samaq-muted: #8C7355;        /* لون نص باهت دافئ */
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  font-family: 'Cairo', 'Tajawal', system-ui, sans-serif;
+  color: #223339;
+  direction: rtl;
+  scroll-behavior: smooth;
+  background-color: var(--samaq-cream);
+  /* خلفية فاتحة منعشة: أبيض متدرج لأخضر فاتح لأزرق سماوي فاتح،
+     فوقها زخرفة هندسية شفافة جدًا عشان تدي إحساس حيوي من غير ما
+     تعوق قراءة المحتوى */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84' viewBox='0 0 84 84'%3E%3Cg fill='none' stroke='%23A47C43' stroke-opacity='0.10' stroke-width='1.4'%3E%3Ccircle cx='42' cy='42' r='16'/%3E%3Ccircle cx='0' cy='0' r='16'/%3E%3Ccircle cx='84' cy='0' r='16'/%3E%3Ccircle cx='0' cy='84' r='16'/%3E%3Ccircle cx='84' cy='84' r='16'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(165deg, #FFFFFF 0%, #F7EED7 45%, #F1E4C4 100%);
+  background-attachment: fixed;
+  background-size: 84px 84px, cover;
+}
+
+::-webkit-scrollbar { height: 6px; width: 6px; }
+::-webkit-scrollbar-thumb { background: var(--samaq-border); border-radius: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.font-display { font-family: 'Rakkas', 'Cairo', sans-serif; }
+
+/* Brand utility colors */
+.bg-samaq-green { background-color: var(--samaq-green); }
+.bg-samaq-blue { background-color: var(--samaq-blue); }
+.bg-samaq-gold { background-color: var(--samaq-gold); }
+.text-samaq-green { color: var(--samaq-green); }
+.text-samaq-blue { color: var(--samaq-blue); }
+.text-samaq-gold { color: var(--samaq-gold); }
+.border-samaq-green { border-color: var(--samaq-green); }
+
+/* رأس الصفحة — أزرق سماوي غامق نظيف بدل العنابي الغامق */
+.samaq-gradient-header {
+  background: linear-gradient(180deg, var(--samaq-maroon) 0%, #2A1F13 100%);
+  color: #FBF3E2;
+  border-bottom: 3px solid var(--samaq-gold);
+  box-shadow: 0 4px 18px rgba(62,47,29,.35);
+  position: relative;
+}
+.samaq-gradient-header::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: -6px; height: 6px;
+  background-image: repeating-linear-gradient(135deg, var(--samaq-green) 0 6px, var(--samaq-sky) 6px 12px);
+  opacity: .5;
+}
+.samaq-gradient-header * { color: inherit; }
+.samaq-gradient-header .bg-white\/15 { background-color: rgba(255,255,255,.14); }
+.samaq-gradient-header .bg-white\/15:hover,
+.samaq-gradient-header .hover\:bg-white\/25:hover { background-color: rgba(255,255,255,.26); }
+.samaq-gradient-header img { filter: drop-shadow(0 2px 6px rgba(0,0,0,.2)); }
+
+.item-image-fallback {
+  background: linear-gradient(160deg, #F7EED7 0%, #F1E4C4 55%, #E9D9A0 100%);
+  position: relative;
+  overflow: hidden;
+}
+.item-image-fallback::after {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 30% 20%, rgba(92,67,38,0.08), transparent 60%),
+                     radial-gradient(circle at 80% 80%, rgba(164,124,67,0.16), transparent 55%);
+}
+
+.category-pill {
+  transition: all .18s ease;
+  white-space: nowrap;
+}
+.category-pill[data-active="true"] {
+  background: linear-gradient(135deg, var(--samaq-green) 0%, var(--samaq-sky) 100%);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(164,124,67,.38), 0 0 0 2px var(--samaq-gold-light) inset;
+}
+.category-pill[data-active="false"] {
+  background: var(--samaq-card);
+  color: var(--samaq-blue);
+  border: 1.5px solid var(--samaq-border);
+}
+.category-pill[data-active="false"]:hover { border-color: var(--samaq-green); color: var(--samaq-green); }
+
+.item-card {
+  transition: transform .15s ease, box-shadow .15s ease;
+  background: var(--samaq-card) !important;
+  border-color: var(--samaq-border) !important;
+  box-shadow: 0 2px 10px rgba(74,59,44,.08);
+}
+.item-card:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(74,59,44,.16); }
+
+.fab-cart {
+  box-shadow: 0 10px 30px rgba(164,124,67,.42), 0 0 0 3px var(--samaq-gold-light) inset;
+  background: linear-gradient(135deg, var(--samaq-green) 0%, var(--samaq-sky) 100%) !important;
+}
+
+.slide-in { animation: slideIn .28s ease forwards; }
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+.fade-in { animation: fadeIn .2s ease forwards; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.pop-in { animation: popIn .18s ease forwards; }
+@keyframes popIn { from { opacity:0; transform: scale(.96);} to {opacity:1; transform: scale(1);} }
+
+.social-btn {
+  width: 44px; height: 44px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.3);
+  transition: all .15s ease;
+}
+.social-btn:hover { background: rgba(255,255,255,.24); transform: translateY(-2px); }
+
+.store-btn {
+  display: flex; align-items: center; gap: 10px;
+  background: #000; color: #fff;
+  border-radius: 10px; padding: 8px 16px;
+  border: 1px solid #444;
+  transition: all .15s ease;
+}
+.store-btn:hover { border-color: var(--samaq-gold); transform: translateY(-1px); }
+
+.drag-handle { cursor: grab; }
+.drag-handle:active { cursor: grabbing; }
+.drag-over { outline: 2px dashed var(--samaq-green); outline-offset: 4px; background: #F3E9D0; }
+
+input[type="text"], input[type="tel"], input[type="number"], input[type="url"], textarea, select {
+  font-family: inherit;
+}
+
+/* ---- إعادة تلوين الكلاسات اللي متكتوبة بألوان ثابتة (hex) جوه
+        ملفات الـ JSX نفسها، عشان الشكل الجديد ينطبق على كل حتة
+        من غير ما نلمس كل ملف JSX ---- */
+.bg-\[\#f7eed7\], .bg-\[\#f7eed7\]\/95 { background-color: var(--samaq-card) !important; }
+.bg-\[\#f3ead1\] { background-color: #F1E4C4 !important; }
+.bg-\[\#2e2013\] { background-color: var(--samaq-maroon) !important; }
+.bg-\[\#a47c43\]\/10 { background-color: rgba(164,124,67,.12) !important; }
+.bg-\[\#a47c43\]\/20 { background-color: rgba(164,124,67,.22) !important; }
+.text-\[\#2e2013\] { color: var(--samaq-black) !important; }
+.text-\[\#4a3b2c\] { color: var(--samaq-black) !important; }
+.text-\[\#5c4326\] { color: var(--samaq-blue) !important; }
+.text-\[\#6b4a1f\] { color: #4A3B2C !important; }
+.text-\[\#8c7355\] { color: var(--samaq-muted) !important; }
+.border-\[\#e8dcc0\], .border-\[\#ede0c0\] { border-color: var(--samaq-border) !important; }
+
+/* لما نفس الكلاسات دي تبقى فوق الهيدر/شريط علوي غامق (samaq-gradient-header)،
+   لازم النص يبقى فاتح (كريمي) عشان يتقرا، مش غامق زي باقي الصفحة */
+.samaq-gradient-header .text-\[\#5c4326\],
+.samaq-gradient-header .text-\[\#8c7355\],
+.samaq-gradient-header.text-\[\#4a3b2c\] { color: #FBF3E2 !important; }
+
+/* كروت بيضاء (مودالات، سلة، بوكسات إدارية) — أبيض نضيف */
+.bg-white { background-color: var(--samaq-card) !important; }
+.bg-white\/90 { background-color: rgba(255,255,255,.92) !important; }
+.bg-white\/70 { background-color: rgba(255,255,255,.75) !important; }
+
+/* ---- تعديل ألوان تدرجات Tailwind الرمادية/الزرقاء/الحمراء الجاهزة
+        عشان تتماشى مع اللوحة الكريمية/البنية/الذهبية الجديدة ---- */
+.bg-gray-50   { background-color: #FBF5E7 !important; }
+.bg-gray-100  { background-color: #F3E9D0 !important; }
+.bg-gray-200  { background-color: #EADFC0 !important; }
+.bg-gray-300  { background-color: var(--samaq-border) !important; }
+.border-gray-100 { border-color: #F0E5CC !important; }
+.border-gray-200 { border-color: var(--samaq-border) !important; }
+.text-gray-300 { color: #C9B893 !important; }
+.text-gray-400 { color: #B29B6E !important; }
+.text-gray-500 { color: var(--samaq-muted) !important; }
+.text-gray-600 { color: #6B5539 !important; }
+.text-gray-700 { color: var(--samaq-black) !important; }
+.hover\:text-gray-600:hover { color: #6B5539 !important; }
+.bg-blue-50   { background-color: #F3E6C9 !important; }
+.border-blue-50 { border-color: #F3E6C9 !important; }
+.text-red-300 { color: #e57373 !important; }
+.text-red-400 { color: #e05353 !important; }
+.text-red-500 { color: #c62828 !important; }
+.text-red-600 { color: #9c1f1f !important; }
+.hover\:text-red-600:hover { color: #9c1f1f !important; }
+
+@media print { .no-print { display: none !important; } }
+
+/* ============================================================
+   منيو "كتاب" — صفحة المنيو بتتقلب زي المنيو الورقي الحقيقي كل ما
+   يتغيّر التصنيف، بدل ما تتبدّل فجأة
+   ============================================================ */
+.book-page { perspective: 1800px; }
+.book-page-inner {
+  background: var(--samaq-card);
+  border: 1px solid var(--samaq-border);
+  border-radius: 18px;
+  box-shadow: 0 14px 34px rgba(34,51,57,.14), 0 2px 0 rgba(255,255,255,.6) inset;
+  position: relative;
+  overflow: hidden;
+  transform-origin: right center;
+  animation: pageTurn .55s cubic-bezier(.2,.7,.3,1);
+  padding: 18px 16px 22px;
+}
+@keyframes pageTurn {
+  0%   { transform: rotateY(-78deg); opacity: 0; }
+  55%  { opacity: 1; }
+  100% { transform: rotateY(0deg); opacity: 1; }
+}
+/* ظل خفيف على الحافة اليمين زي "طية" الكتاب المجلّد */
+.book-page-inner::before {
+  content: "";
+  position: absolute; top: 0; bottom: 0; right: 0; width: 26px;
+  background: linear-gradient(to left, rgba(34,51,57,.08), transparent);
+  pointer-events: none;
+}
+/* طية ورقة زخرفية في الركن، زي علامة صفحة في منيو حقيقي */
+.page-corner-fold {
+  position: absolute; left: 0; bottom: 0; width: 34px; height: 34px;
+  background: linear-gradient(135deg, transparent 50%, var(--samaq-gold) 50%);
+  opacity: .5;
+  border-top-right-radius: 6px;
+}
+.category-theme-bg {
+  position: absolute; inset: 0;
+  background-repeat: repeat;
+  opacity: .10;
+  pointer-events: none;
+}
