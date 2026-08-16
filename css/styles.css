@@ -1,247 +1,367 @@
 /* ============================================================
    روعة المنقوشة — Custom Styles
-   هوية بصرية دافئة: كريمي / بني / ذهبي — بنفس روح منيو
-   "الحلبي طايب" المرجعي (نفس الألوان)، مع لمسة فخامة للفطائر والمشاوي.
+   نسخة طبق الأصل من تصميم المنيو المرجعي (نفس الأشكال والألوان
+   والمسافات والحركة بالظبط): كريمي/بني/ذهبي، كروت بيضاء بحواف
+   دائرية، سلة عائمة، مودال واحد للسلة والطلب.
    ============================================================ */
 
 :root {
-  --samaq-green: #A47C43;        /* بني ذهبي دافئ (أساسي/أزرار/أسعار) */
-  --samaq-green-dark: #8B6735;   /* هوفر */
-  --samaq-blue: #5C4326;         /* بني غامق (ثانوي/عناوين/هيدر) */
-  --samaq-blue-dark: #402F1C;
-  --samaq-sky: #C9A66B;          /* ذهبي فاتح (لمسات وتدرجات) */
-  --samaq-gold: #C9A227;         /* ذهبي مميز للشارات والنجوم والخطوط الفاصلة */
-  --samaq-gold-light: #E9D9A0;
-  --samaq-maroon: #3E2F1D;       /* لون الهيدر/الفوتر الغامق (بني عميق فاخر) */
-  --samaq-black: #4A3B2C;        /* بني غامق للنصوص الأساسية */
-  --samaq-white: #FFFFFF;
-  --samaq-cream: #F7EED7;        /* خلفية الصفحة الكريمية */
-  --samaq-card: #FFFFFF;         /* خلفية الكروت — أبيض نضيف */
-  --samaq-border: #D8C8A7;       /* حدود بيچ فاتحة */
-  --samaq-muted: #8C7355;        /* لون نص باهت دافئ */
+  --bg-color: #f7eed7;
+  --surface-color: #ffffff;
+  --text-main: #4a3b2c;
+  --text-muted: #8c7355;
+  --primary-color: #a47c43;
+  --primary-hover: #8b6735;
+  --secondary-color: #5c4326;
+  --border-color: #d8c8a7;
+  --danger-color: #d32f2f;
+  --success-color: #2e7d32;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 99px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-family: "Cairo", sans-serif;
+
+  /* أسماء قديمة (samaq-*) لسه مستخدمة في لوحة التحكم فقط —
+     بتشاور على نفس الألوان فوق عشان كل حاجة متسقة */
+  --samaq-green: var(--primary-color);
+  --samaq-green-dark: var(--primary-hover);
+  --samaq-blue: var(--secondary-color);
+  --samaq-blue-dark: #402f1c;
+  --samaq-sky: #c9a66b;
+  --samaq-gold: #c9a227;
+  --samaq-gold-light: #e9d9a0;
+  --samaq-maroon: var(--secondary-color);
+  --samaq-black: var(--text-main);
+  --samaq-white: #ffffff;
+  --samaq-cream: var(--bg-color);
+  --samaq-card: var(--surface-color);
+  --samaq-border: var(--border-color);
+  --samaq-muted: var(--text-muted);
 }
 
-* { -webkit-tap-highlight-color: transparent; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 html, body {
-  font-family: 'Cairo', 'Tajawal', system-ui, sans-serif;
-  color: #223339;
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
   direction: rtl;
   scroll-behavior: smooth;
-  background-color: var(--samaq-cream);
-  /* خلفية فاتحة منعشة: أبيض متدرج لأخضر فاتح لأزرق سماوي فاتح،
-     فوقها زخرفة هندسية شفافة جدًا عشان تدي إحساس حيوي من غير ما
-     تعوق قراءة المحتوى */
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84' viewBox='0 0 84 84'%3E%3Cg fill='none' stroke='%23A47C43' stroke-opacity='0.10' stroke-width='1.4'%3E%3Ccircle cx='42' cy='42' r='16'/%3E%3Ccircle cx='0' cy='0' r='16'/%3E%3Ccircle cx='84' cy='0' r='16'/%3E%3Ccircle cx='0' cy='84' r='16'/%3E%3Ccircle cx='84' cy='84' r='16'/%3E%3C/g%3E%3C/svg%3E"),
-    linear-gradient(165deg, #FFFFFF 0%, #F7EED7 45%, #F1E4C4 100%);
-  background-attachment: fixed;
-  background-size: 84px 84px, cover;
+  padding-bottom: 90px;
+  overflow-x: hidden;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d8c8a7' fill-opacity='0.35'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
-::-webkit-scrollbar { height: 6px; width: 6px; }
-::-webkit-scrollbar-thumb { background: var(--samaq-border); border-radius: 10px; }
-::-webkit-scrollbar-track { background: transparent; }
+button { border: none; background: none; cursor: pointer; font-family: inherit; color: inherit; outline: none; }
+input, textarea, select { font-family: inherit; outline: none; }
+h1, h2, h3, h4 { font-weight: 800; line-height: 1.2; }
+.hidden { display: none !important; }
 
+::-webkit-scrollbar { height: 6px; width: 6px; }
+::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-.font-display { font-family: 'Rakkas', 'Cairo', sans-serif; }
+@media print { .no-print { display: none !important; } }
 
-/* Brand utility colors */
-.bg-samaq-green { background-color: var(--samaq-green); }
-.bg-samaq-blue { background-color: var(--samaq-blue); }
-.bg-samaq-gold { background-color: var(--samaq-gold); }
-.text-samaq-green { color: var(--samaq-green); }
-.text-samaq-blue { color: var(--samaq-blue); }
-.text-samaq-gold { color: var(--samaq-gold); }
-.border-samaq-green { border-color: var(--samaq-green); }
-
-/* رأس الصفحة — أزرق سماوي غامق نظيف بدل العنابي الغامق */
-.samaq-gradient-header {
-  background: linear-gradient(180deg, var(--samaq-maroon) 0%, #2A1F13 100%);
-  color: #FBF3E2;
-  border-bottom: 3px solid var(--samaq-gold);
-  box-shadow: 0 4px 18px rgba(62,47,29,.35);
-  position: relative;
+/* ---------------- الهيدر ---------------- */
+.header {
+  background-color: var(--surface-color);
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+  border-bottom: 3px solid var(--primary-color);
 }
-.samaq-gradient-header::after {
-  content: "";
-  position: absolute; left: 0; right: 0; bottom: -6px; height: 6px;
-  background-image: repeating-linear-gradient(135deg, var(--samaq-green) 0 6px, var(--samaq-sky) 6px 12px);
-  opacity: .5;
+.header-content { display: flex; justify-content: center; align-items: center; max-width: 1200px; margin: 0 auto; gap: 0.75rem; }
+.logo-container { display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
+.logo-image { max-height: 64px; height: 64px; width: 64px; object-fit: cover; border-radius: 50%; }
+.store-title { text-align: center; }
+.store-title p:first-child { font-weight: 800; font-size: 1.15rem; color: var(--secondary-color); line-height: 1.2; }
+.store-title p:last-child { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ---------------- شريط البحث ---------------- */
+.search-container { max-width: 1200px; margin: 1.25rem auto 0.75rem; padding: 0 1rem; position: relative; }
+.search-input {
+  width: 100%; padding: 1rem 3rem 1rem 1rem; border-radius: var(--radius-full);
+  border: 2px solid var(--border-color); background-color: var(--surface-color);
+  color: var(--text-main); font-size: 1rem; transition: var(--transition); box-shadow: var(--shadow-sm);
+}
+.search-input:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(164, 124, 67, 0.2); }
+.search-icon { position: absolute; right: 2rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.2rem; pointer-events: none; }
+
+/* ---------------- التصنيفات ---------------- */
+.categories-wrapper {
+  position: sticky; top: 0; z-index: 90; background-color: var(--bg-color);
+  padding: 0.5rem 0; box-shadow: 0 4px 6px -6px rgba(0, 0, 0, 0.1);
+}
+.categories-nav {
+  display: flex; gap: 0.75rem; overflow-x: auto; padding: 0.5rem 1rem;
+  scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth;
+  max-width: 1200px; margin: 0 auto;
+}
+.categories-nav::-webkit-scrollbar { display: none; }
+.category-btn {
+  padding: 0.6rem 1.2rem; border-radius: var(--radius-full); background-color: var(--surface-color);
+  border: 1px solid var(--border-color); white-space: nowrap; font-weight: 700;
+  color: var(--secondary-color); transition: var(--transition); box-shadow: var(--shadow-sm); flex-shrink: 0;
+}
+.category-btn.active {
+  background-color: var(--primary-color); color: white; border-color: var(--primary-color);
+  box-shadow: 0 4px 10px rgba(164, 124, 67, 0.3); transform: translateY(-2px);
+}
+
+/* ---------------- شبكة المنيو ---------------- */
+.menu-container { max-width: 1200px; margin: 0 auto; padding: 0 1rem 2rem; }
+.category-section-title {
+  font-size: 1.6rem; color: var(--secondary-color); margin: 2rem 0 1rem; padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-color); display: flex; align-items: center; justify-content: space-between;
+}
+.section-decorative { color: var(--primary-color); font-size: 1.2rem; }
+.menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
+
+.menu-card {
+  background-color: var(--surface-color); border-radius: var(--radius-lg); overflow: hidden;
+  box-shadow: var(--shadow-sm); transition: var(--transition); display: flex; flex-direction: column;
+  border: 1px solid var(--border-color); position: relative;
+}
+.menu-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); border-color: var(--primary-color); }
+.menu-card-image { width: 100%; aspect-ratio: 4 / 3; background-color: var(--bg-color); overflow: hidden; cursor: pointer; position: relative; }
+.menu-card-image img { width: 100%; height: 100%; object-fit: cover; }
+.menu-card-image-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(160deg, #f7eed7 0%, #f1e4c4 100%); }
+.card-content { padding: 1.1rem; display: flex; flex-direction: column; flex-grow: 1; }
+.item-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; gap: 0.5rem; }
+.item-name { font-size: 1.05rem; font-weight: 800; color: var(--secondary-color); }
+.item-calories {
+  font-size: 0.75rem; color: var(--text-muted); background-color: var(--bg-color);
+  padding: 0.2rem 0.6rem; border-radius: var(--radius-full); white-space: nowrap;
+  border: 1px solid var(--border-color); flex-shrink: 0;
+}
+.item-desc { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 0.75rem; flex-grow: 1; line-height: 1.5; }
+.unavailable-badge { background-color: rgba(0, 0, 0, 0.8); color: white; font-size: 10px; padding: 2px 8px; border-radius: var(--radius-full); flex-shrink: 0; }
+
+.size-selector {
+  display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; background-color: var(--bg-color);
+  padding: 0.35rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);
+}
+.size-btn {
+  flex: 1; min-width: 44px; padding: 0.4rem; text-align: center; border-radius: var(--radius-md);
+  font-size: 0.82rem; font-weight: 800; color: var(--text-main); transition: var(--transition); border: 1px solid transparent;
+}
+.size-btn.active { background-color: var(--primary-color); color: white; box-shadow: var(--shadow-sm); }
+
+.price-row {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;
+  padding-top: 0.5rem; border-top: 1px dashed var(--border-color);
+}
+.item-price { font-size: 1.2rem; font-weight: 900; color: var(--primary-color); }
+.currency { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
+.card-actions { display: flex; flex-direction: column; gap: 0.6rem; margin-top: auto; }
+.notes-input {
+  width: 100%; padding: 0.55rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);
+  background-color: var(--bg-color); color: var(--text-main); resize: none; font-size: 0.85rem; transition: var(--transition);
+}
+.notes-input:focus { border-color: var(--primary-color); }
+.add-btn {
+  background-color: var(--primary-color); color: white; padding: 0.75rem; border-radius: var(--radius-md);
+  font-weight: 800; font-size: 0.95rem; width: 100%; transition: var(--transition);
+  display: flex; justify-content: center; align-items: center; gap: 0.5rem;
+}
+.add-btn:hover:not(:disabled) { background-color: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(164, 124, 67, 0.3); }
+.add-btn:disabled { background-color: var(--border-color); color: var(--text-muted); cursor: not-allowed; }
+
+/* ---------------- السلة العائمة ---------------- */
+.floating-cart {
+  position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+  background-color: var(--secondary-color); color: white; padding: 0.8rem 1.5rem;
+  border-radius: var(--radius-full); display: flex; align-items: center; justify-content: space-between;
+  box-shadow: var(--shadow-lg); z-index: 90; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: calc(100% - 2rem); max-width: 400px; cursor: pointer; border: 2px solid var(--primary-color); gap: 1rem;
+}
+.floating-cart:hover { background-color: var(--primary-hover); box-shadow: 0 10px 20px rgba(92, 67, 38, 0.4); }
+.cart-info { display: flex; align-items: center; gap: 0.75rem; font-weight: 800; font-size: 1rem; }
+.cart-badge {
+  background-color: var(--primary-color); color: white; border-radius: var(--radius-full);
+  width: 26px; height: 26px; display: flex; justify-content: center; align-items: center;
+  font-size: 0.85rem; font-weight: 900; flex-shrink: 0;
+}
+.cart-badge.pulse { animation: pulse-badge 0.4s ease-in-out; }
+@keyframes pulse-badge { 0% { transform: scale(1); } 50% { transform: scale(1.4); background-color: white; color: var(--primary-color); } 100% { transform: scale(1); } }
+
+/* ---------------- مودال (سلة/طلب/تفاصيل صنف) ---------------- */
+.modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(74, 59, 44, 0.7);
+  z-index: 200; display: flex; justify-content: center; align-items: flex-end;
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+}
+@media (min-width: 640px) { .modal-overlay { align-items: center; } }
+.cart-modal {
+  background-color: var(--bg-color); width: 100%; max-width: 600px; max-height: 90vh;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0; display: flex; flex-direction: column;
+  box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.2); overflow: hidden; animation: sheetUp 0.3s ease;
+}
+@media (min-width: 640px) {
+  .cart-modal { border-radius: var(--radius-lg); animation: popIn 0.2s ease; }
+}
+@keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+.modal-header {
+  padding: 1.1rem 1.4rem; border-bottom: 2px solid var(--border-color); display: flex;
+  justify-content: space-between; align-items: center; background-color: var(--surface-color); flex-shrink: 0;
+}
+.modal-title { font-size: 1.25rem; font-weight: 900; color: var(--secondary-color); display: flex; align-items: center; gap: 10px; }
+.close-btn {
+  width: 34px; height: 34px; border-radius: 50%; background-color: var(--bg-color); color: var(--text-main);
+  display: flex; justify-content: center; align-items: center; font-size: 1.1rem; transition: var(--transition);
+  border: 1px solid var(--border-color); flex-shrink: 0;
+}
+.close-btn:hover { background-color: var(--danger-color); color: white; border-color: var(--danger-color); }
+.modal-body { padding: 1.4rem; overflow-y: auto; flex-grow: 1; }
+.empty-cart-msg { text-align: center; padding: 3rem 1rem; color: var(--text-muted); font-weight: 600; }
+
+.cart-item { background-color: var(--surface-color); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1rem; border: 1px solid var(--border-color); }
+.cart-item-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; gap: 0.5rem; }
+.cart-item-title { font-weight: 800; font-size: 1rem; color: var(--secondary-color); }
+.cart-item-price-total { font-weight: 900; color: var(--primary-color); font-size: 1.05rem; white-space: nowrap; }
+.cart-item-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 0.85rem; padding-top: 0.85rem; border-top: 1px dashed var(--border-color); }
+.qty-controls { display: flex; align-items: center; background-color: var(--bg-color); border-radius: var(--radius-full); border: 1px solid var(--border-color); overflow: hidden; }
+.qty-btn { width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; color: var(--secondary-color); font-weight: bold; font-size: 1.1rem; transition: background-color 0.2s; }
+.qty-btn:hover { background-color: var(--border-color); }
+.qty-value { width: 32px; text-align: center; font-weight: 800; font-size: 0.95rem; color: var(--text-main); }
+.remove-btn { color: var(--danger-color); padding: 0.45rem 0.75rem; background-color: rgba(211, 47, 47, 0.1); border-radius: var(--radius-md); font-size: 0.85rem; font-weight: 700; transition: var(--transition); }
+.remove-btn:hover { background-color: var(--danger-color); color: white; }
+.cart-item-notes { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; }
+
+.checkout-section { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 2px solid var(--primary-color); }
+.section-title { font-size: 1.1rem; margin-bottom: 1rem; font-weight: 900; color: var(--secondary-color); }
+.order-type-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.25rem; background: var(--surface-color); padding: 0.3rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); }
+.type-tab { flex: 1; padding: 0.7rem 0.4rem; border-radius: var(--radius-md); font-weight: 800; font-size: 0.85rem; transition: var(--transition); color: var(--text-muted); text-align: center; }
+.type-tab.active { background-color: var(--primary-color); color: white; box-shadow: var(--shadow-sm); }
+.form-fields { display: flex; flex-direction: column; gap: 1rem; }
+.form-fields label { font-size: 0.85rem; color: var(--secondary-color); margin-bottom: 0.35rem; font-weight: 700; display: block; }
+.form-fields input, .form-fields textarea {
+  width: 100%; padding: 0.9rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);
+  background-color: var(--surface-color); color: var(--text-main); transition: var(--transition); font-size: 0.95rem;
+}
+.form-fields input:focus, .form-fields textarea:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(164, 124, 67, 0.2); }
+.input-error { border-color: var(--danger-color) !important; background-color: rgba(211, 47, 47, 0.05) !important; }
+
+.modal-footer { padding: 1.25rem 1.4rem; border-top: 1px solid var(--border-color); background-color: var(--surface-color); flex-shrink: 0; }
+.summary-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.summary-label { font-size: 1.05rem; color: var(--secondary-color); font-weight: 800; }
+.summary-total { font-size: 1.4rem; font-weight: 900; color: var(--primary-color); }
+.checkout-btn {
+  background-color: #25d366; color: white; width: 100%; padding: 1rem; border-radius: var(--radius-md);
+  font-size: 1.05rem; font-weight: 900; display: flex; justify-content: center; align-items: center;
+  gap: 0.6rem; transition: var(--transition); box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+.checkout-btn:hover:not(:disabled) { background-color: #128c7e; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4); }
+.checkout-btn:disabled { background-color: var(--border-color); color: var(--text-muted); cursor: not-allowed; box-shadow: none; }
+
+/* ---------------- توست ---------------- */
+.toast {
+  position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px);
+  background-color: var(--secondary-color); color: white; padding: 1rem 2rem; border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg); opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 1000; font-weight: 800; display: flex; align-items: center; gap: 10px;
+}
+.toast.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+
+/* ---------------- زر العودة للأعلى ---------------- */
+.scroll-top {
+  position: fixed; bottom: 5.5rem; right: 1.5rem; background-color: var(--primary-color); color: white;
+  width: 42px; height: 42px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+  box-shadow: var(--shadow-md); opacity: 0; pointer-events: none; transition: var(--transition);
+  z-index: 80; font-size: 1.3rem; font-weight: bold;
+}
+.scroll-top.visible { opacity: 1; pointer-events: auto; }
+.scroll-top:hover { background-color: var(--secondary-color); transform: translateY(-3px); }
+
+/* ---------------- تحميل / خطأ ---------------- */
+.menu-loading, .menu-error { text-align: center; padding: 4rem 1rem; color: var(--text-muted); min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.spinner {
+  width: 40px; height: 40px; border: 4px solid var(--border-color); border-top-color: var(--primary-color);
+  border-radius: 50%; margin: 0 auto 1rem; animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.menu-error button { margin-top: 1rem; background-color: var(--primary-color); color: #fff; padding: 0.7rem 1.4rem; border-radius: var(--radius-md); font-weight: 700; }
+
+.fade-in { animation: fadeIn 0.2s ease forwards; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.pop-in { animation: popIn 0.18s ease forwards; }
+@keyframes popIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+
+/* ============================================================
+   الأنماط دي بتخص لوحة تحكم صاحب المطعم بس (مش جزء من تصميم
+   المنيو المرجعي) — لسه شغالة بألوان متسقة مع الهوية الجديدة.
+   ============================================================ */
+.samaq-gradient-header {
+  background: linear-gradient(180deg, var(--secondary-color) 0%, #2a1f13 100%);
+  color: #fbf3e2;
+  border-bottom: 3px solid var(--samaq-gold);
+  box-shadow: 0 4px 18px rgba(62, 47, 29, 0.35);
+  position: relative;
 }
 .samaq-gradient-header * { color: inherit; }
-.samaq-gradient-header .bg-white\/15 { background-color: rgba(255,255,255,.14); }
+.samaq-gradient-header .bg-white\/15 { background-color: rgba(255, 255, 255, 0.14); }
 .samaq-gradient-header .bg-white\/15:hover,
-.samaq-gradient-header .hover\:bg-white\/25:hover { background-color: rgba(255,255,255,.26); }
-.samaq-gradient-header img { filter: drop-shadow(0 2px 6px rgba(0,0,0,.2)); }
+.samaq-gradient-header .hover\:bg-white\/25:hover { background-color: rgba(255, 255, 255, 0.26); }
 
 .item-image-fallback {
-  background: linear-gradient(160deg, #F7EED7 0%, #F1E4C4 55%, #E9D9A0 100%);
-  position: relative;
-  overflow: hidden;
+  background: linear-gradient(160deg, #f7eed7 0%, #f1e4c4 55%, #e9d9a0 100%);
+  position: relative; overflow: hidden;
 }
-.item-image-fallback::after {
-  content: "";
-  position: absolute; inset: 0;
-  background-image: radial-gradient(circle at 30% 20%, rgba(92,67,38,0.08), transparent 60%),
-                     radial-gradient(circle at 80% 80%, rgba(164,124,67,0.16), transparent 55%);
-}
-
-.category-pill {
-  transition: all .18s ease;
-  white-space: nowrap;
-}
-.category-pill[data-active="true"] {
-  background: linear-gradient(135deg, var(--samaq-green) 0%, var(--samaq-sky) 100%);
-  color: #fff;
-  box-shadow: 0 4px 14px rgba(164,124,67,.38), 0 0 0 2px var(--samaq-gold-light) inset;
-}
-.category-pill[data-active="false"] {
-  background: var(--samaq-card);
-  color: var(--samaq-blue);
-  border: 1.5px solid var(--samaq-border);
-}
-.category-pill[data-active="false"]:hover { border-color: var(--samaq-green); color: var(--samaq-green); }
-
-.item-card {
-  transition: transform .15s ease, box-shadow .15s ease;
-  background: var(--samaq-card) !important;
-  border-color: var(--samaq-border) !important;
-  box-shadow: 0 2px 10px rgba(74,59,44,.08);
-}
-.item-card:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(74,59,44,.16); }
-
-.fab-cart {
-  box-shadow: 0 10px 30px rgba(164,124,67,.42), 0 0 0 3px var(--samaq-gold-light) inset;
-  background: linear-gradient(135deg, var(--samaq-green) 0%, var(--samaq-sky) 100%) !important;
-}
-
-.slide-in { animation: slideIn .28s ease forwards; }
-@keyframes slideIn {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
-}
-.fade-in { animation: fadeIn .2s ease forwards; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.pop-in { animation: popIn .18s ease forwards; }
-@keyframes popIn { from { opacity:0; transform: scale(.96);} to {opacity:1; transform: scale(1);} }
-
-.social-btn {
-  width: 44px; height: 44px; border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.3);
-  transition: all .15s ease;
-}
-.social-btn:hover { background: rgba(255,255,255,.24); transform: translateY(-2px); }
-
-.store-btn {
-  display: flex; align-items: center; gap: 10px;
-  background: #000; color: #fff;
-  border-radius: 10px; padding: 8px 16px;
-  border: 1px solid #444;
-  transition: all .15s ease;
-}
-.store-btn:hover { border-color: var(--samaq-gold); transform: translateY(-1px); }
-
+.category-pill { transition: all 0.18s ease; white-space: nowrap; }
+.category-pill[data-active="true"] { background: var(--primary-color); color: #fff; }
+.category-pill[data-active="false"] { background: var(--surface-color); color: var(--secondary-color); border: 1.5px solid var(--border-color); }
+.category-pill[data-active="false"]:hover { border-color: var(--primary-color); color: var(--primary-color); }
+.item-card { transition: transform 0.15s ease, box-shadow 0.15s ease; background: var(--surface-color) !important; border-color: var(--border-color) !important; }
+.item-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.fab-cart { background: var(--primary-color) !important; }
 .drag-handle { cursor: grab; }
 .drag-handle:active { cursor: grabbing; }
-.drag-over { outline: 2px dashed var(--samaq-green); outline-offset: 4px; background: #F3E9D0; }
+.drag-over { outline: 2px dashed var(--primary-color); outline-offset: 4px; background: #f3e9d0; }
 
-input[type="text"], input[type="tel"], input[type="number"], input[type="url"], textarea, select {
-  font-family: inherit;
-}
-
-/* ---- إعادة تلوين الكلاسات اللي متكتوبة بألوان ثابتة (hex) جوه
-        ملفات الـ JSX نفسها، عشان الشكل الجديد ينطبق على كل حتة
-        من غير ما نلمس كل ملف JSX ---- */
-.bg-\[\#f7eed7\], .bg-\[\#f7eed7\]\/95 { background-color: var(--samaq-card) !important; }
-.bg-\[\#f3ead1\] { background-color: #F1E4C4 !important; }
-.bg-\[\#2e2013\] { background-color: var(--samaq-maroon) !important; }
-.bg-\[\#a47c43\]\/10 { background-color: rgba(164,124,67,.12) !important; }
-.bg-\[\#a47c43\]\/20 { background-color: rgba(164,124,67,.22) !important; }
-.text-\[\#2e2013\] { color: var(--samaq-black) !important; }
-.text-\[\#4a3b2c\] { color: var(--samaq-black) !important; }
-.text-\[\#5c4326\] { color: var(--samaq-blue) !important; }
-.text-\[\#6b4a1f\] { color: #4A3B2C !important; }
-.text-\[\#8c7355\] { color: var(--samaq-muted) !important; }
-.border-\[\#e8dcc0\], .border-\[\#ede0c0\] { border-color: var(--samaq-border) !important; }
-
-/* لما نفس الكلاسات دي تبقى فوق الهيدر/شريط علوي غامق (samaq-gradient-header)،
-   لازم النص يبقى فاتح (كريمي) عشان يتقرا، مش غامق زي باقي الصفحة */
+.bg-\[\#f7eed7\], .bg-\[\#f7eed7\]\/95 { background-color: var(--surface-color) !important; }
+.bg-\[\#f3ead1\] { background-color: #f1e4c4 !important; }
+.bg-\[\#2e2013\] { background-color: var(--secondary-color) !important; }
+.bg-\[\#a47c43\]\/10 { background-color: rgba(164, 124, 67, 0.12) !important; }
+.bg-\[\#a47c43\]\/20 { background-color: rgba(164, 124, 67, 0.22) !important; }
+.text-\[\#2e2013\] { color: var(--text-main) !important; }
+.text-\[\#4a3b2c\] { color: var(--text-main) !important; }
+.text-\[\#5c4326\] { color: var(--secondary-color) !important; }
+.text-\[\#6b4a1f\] { color: var(--text-main) !important; }
+.text-\[\#8c7355\] { color: var(--text-muted) !important; }
+.border-\[\#e8dcc0\], .border-\[\#ede0c0\] { border-color: var(--border-color) !important; }
 .samaq-gradient-header .text-\[\#5c4326\],
 .samaq-gradient-header .text-\[\#8c7355\],
-.samaq-gradient-header.text-\[\#4a3b2c\] { color: #FBF3E2 !important; }
-
-/* كروت بيضاء (مودالات، سلة، بوكسات إدارية) — أبيض نضيف */
-.bg-white { background-color: var(--samaq-card) !important; }
-.bg-white\/90 { background-color: rgba(255,255,255,.92) !important; }
-.bg-white\/70 { background-color: rgba(255,255,255,.75) !important; }
-
-/* ---- تعديل ألوان تدرجات Tailwind الرمادية/الزرقاء/الحمراء الجاهزة
-        عشان تتماشى مع اللوحة الكريمية/البنية/الذهبية الجديدة ---- */
-.bg-gray-50   { background-color: #FBF5E7 !important; }
-.bg-gray-100  { background-color: #F3E9D0 !important; }
-.bg-gray-200  { background-color: #EADFC0 !important; }
-.bg-gray-300  { background-color: var(--samaq-border) !important; }
-.border-gray-100 { border-color: #F0E5CC !important; }
-.border-gray-200 { border-color: var(--samaq-border) !important; }
-.text-gray-300 { color: #C9B893 !important; }
-.text-gray-400 { color: #B29B6E !important; }
-.text-gray-500 { color: var(--samaq-muted) !important; }
-.text-gray-600 { color: #6B5539 !important; }
-.text-gray-700 { color: var(--samaq-black) !important; }
-.hover\:text-gray-600:hover { color: #6B5539 !important; }
-.bg-blue-50   { background-color: #F3E6C9 !important; }
-.border-blue-50 { border-color: #F3E6C9 !important; }
+.samaq-gradient-header.text-\[\#4a3b2c\] { color: #fbf3e2 !important; }
+.bg-white { background-color: var(--surface-color) !important; }
+.bg-white\/90 { background-color: rgba(255, 255, 255, 0.92) !important; }
+.bg-white\/70 { background-color: rgba(255, 255, 255, 0.75) !important; }
+.bg-gray-50 { background-color: #fbf5e7 !important; }
+.bg-gray-100 { background-color: #f3e9d0 !important; }
+.bg-gray-200 { background-color: #eadfc0 !important; }
+.bg-gray-300 { background-color: var(--border-color) !important; }
+.border-gray-100 { border-color: #f0e5cc !important; }
+.border-gray-200 { border-color: var(--border-color) !important; }
+.text-gray-300 { color: #c9b893 !important; }
+.text-gray-400 { color: #b29b6e !important; }
+.text-gray-500 { color: var(--text-muted) !important; }
+.text-gray-600 { color: #6b5539 !important; }
+.text-gray-700 { color: var(--text-main) !important; }
+.hover\:text-gray-600:hover { color: #6b5539 !important; }
+.bg-blue-50 { background-color: #f3e6c9 !important; }
+.border-blue-50 { border-color: #f3e6c9 !important; }
 .text-red-300 { color: #e57373 !important; }
 .text-red-400 { color: #e05353 !important; }
 .text-red-500 { color: #c62828 !important; }
 .text-red-600 { color: #9c1f1f !important; }
 .hover\:text-red-600:hover { color: #9c1f1f !important; }
-
-@media print { .no-print { display: none !important; } }
-
-/* ============================================================
-   منيو "كتاب" — صفحة المنيو بتتقلب زي المنيو الورقي الحقيقي كل ما
-   يتغيّر التصنيف، بدل ما تتبدّل فجأة
-   ============================================================ */
-.book-page { perspective: 1800px; }
-.book-page-inner {
-  background: var(--samaq-card);
-  border: 1px solid var(--samaq-border);
-  border-radius: 18px;
-  box-shadow: 0 14px 34px rgba(34,51,57,.14), 0 2px 0 rgba(255,255,255,.6) inset;
-  position: relative;
-  overflow: hidden;
-  transform-origin: right center;
-  animation: pageTurn .55s cubic-bezier(.2,.7,.3,1);
-  padding: 18px 16px 22px;
-}
-@keyframes pageTurn {
-  0%   { transform: rotateY(-78deg); opacity: 0; }
-  55%  { opacity: 1; }
-  100% { transform: rotateY(0deg); opacity: 1; }
-}
-/* ظل خفيف على الحافة اليمين زي "طية" الكتاب المجلّد */
-.book-page-inner::before {
-  content: "";
-  position: absolute; top: 0; bottom: 0; right: 0; width: 26px;
-  background: linear-gradient(to left, rgba(34,51,57,.08), transparent);
-  pointer-events: none;
-}
-/* طية ورقة زخرفية في الركن، زي علامة صفحة في منيو حقيقي */
-.page-corner-fold {
-  position: absolute; left: 0; bottom: 0; width: 34px; height: 34px;
-  background: linear-gradient(135deg, transparent 50%, var(--samaq-gold) 50%);
-  opacity: .5;
-  border-top-right-radius: 6px;
-}
-.category-theme-bg {
-  position: absolute; inset: 0;
-  background-repeat: repeat;
-  opacity: .10;
-  pointer-events: none;
-}

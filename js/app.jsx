@@ -1,27 +1,55 @@
 // ============================================================
-// SAMAQ — Root App
+// روعة المنقوشة — Root App
 // كل البيانات بتتحمّل من Google Sheets عن طريق Apps Script أول ما
 // الصفحة تفتح. مفيش أي بيانات محفوظة على الجهاز نفسه.
 // ============================================================
 
 function LoadingScreen() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-3 bg-[#f7eed7]">
-      <img src="assets/logo.png" alt="" className="w-16 h-16 opacity-80 animate-pulse" />
-      <p className="text-sm text-gray-500 font-bold">جارِ تحميل المنيو...</p>
+    <div className="menu-loading">
+      <div className="spinner"></div>
+      <p>جارِ تحميل المنيو...</p>
     </div>
   );
 }
 
 function ErrorScreen({ message, onRetry }) {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-3 bg-[#f7eed7] px-6 text-center">
-      <p className="text-red-500 font-bold">تعذر تحميل البيانات</p>
-      <p className="text-xs text-gray-400 max-w-xs">{message}</p>
-      <button onClick={onRetry} className="bg-samaq-green text-white text-sm font-bold rounded-full px-5 py-2 mt-2">
-        إعادة المحاولة
-      </button>
+    <div className="menu-error">
+      <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>⚠️</div>
+      <h3>تعذر تحميل المنيو حاليًا</h3>
+      <p style={{ fontSize: "0.85rem", maxWidth: "22rem" }}>{message}</p>
+      <button onClick={onRetry}>إعادة المحاولة</button>
     </div>
+  );
+}
+
+function Toast({ text }) {
+  return (
+    <div className={`toast ${text ? "show" : ""}`}>
+      <span>✅</span>
+      <span>{text}</span>
+    </div>
+  );
+}
+
+function ScrollTopButton() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    function onScroll() {
+      setVisible(window.scrollY > 400);
+    }
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <button
+      className={`scroll-top no-print ${visible ? "visible" : ""}`}
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label="العودة للأعلى"
+    >
+      ↑
+    </button>
   );
 }
 
@@ -42,7 +70,7 @@ function App() {
   const [showLogin, setShowLogin] = useState(isAdminEntry);
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
-  const [checkoutOpen, setCheckoutOpen] = useState(false);
+  const [toastText, setToastText] = useState("");
 
   function load() {
     setStatus("loading");
@@ -61,6 +89,39 @@ function App() {
 
   useEffect(() => { load(); }, []);
 
+  function showToast(text) {
+    setToastText(text);
+    setTimeout(() => setToastText(""), 3000);
+  }
+
+  // بيضيف صنف للسلة، وبيدمجه مع صنف موجود بنفس الاسم والملاحظات
+  // (زي ما بيحصل بالظبط في المنيو المرجعي) بدل ما يعمل سطر مكرر
+  function addToCart(item, payload) {
+    setCart((prev) => {
+      const idx = prev.findIndex((l) => l.name === payload.displayName && l.notes === payload.notes);
+      if (idx > -1) {
+        const next = [...prev];
+        const qty = next[idx].qty + 1;
+        next[idx] = { ...next[idx], qty, totalPrice: next[idx].unitPrice * qty };
+        return next;
+      }
+      return [
+        ...prev,
+        {
+          lineId: `${item.id}_${Date.now()}`,
+          itemId: item.id,
+          name: payload.displayName,
+          unitPrice: payload.unitPrice,
+          qty: 1,
+          notes: payload.notes || "",
+          optionsSummary: payload.optionsSummary || [],
+          totalPrice: payload.unitPrice,
+        },
+      ];
+    });
+    showToast("تم إضافة الصنف للسلة");
+  }
+
   if (status === "loading") return <LoadingScreen />;
   if (status === "error") return <ErrorScreen message={errorMsg} onRetry={load} />;
 
@@ -77,28 +138,23 @@ function App() {
 
   return (
     <div>
-      <Header cart={cart} onOpenCart={() => setCartOpen(true)} />
-      <MenuPage categories={categories} items={items} settings={settings} cart={cart} setCart={setCart} />
+      <Header />
+      <MenuPage categories={categories} items={items} settings={settings} onAdd={addToCart} />
       <Footer settings={settings} />
       <FloatingCartButton cart={cart} currency={settings.currency} onOpen={() => setCartOpen(true)} />
+      <ScrollTopButton />
+      <Toast text={toastText} />
 
       {cartOpen && (
-        <CartDrawer
-          cart={cart}
-          setCart={setCart}
-          currency={settings.currency}
-          onClose={() => setCartOpen(false)}
-          onCheckout={() => { setCartOpen(false); setCheckoutOpen(true); }}
-        />
-      )}
-
-      {checkoutOpen && (
-        <CheckoutForm
+        <CartModal
           cart={cart}
           setCart={setCart}
           settings={settings}
-          onClose={() => setCheckoutOpen(false)}
-          onDone={() => { setCheckoutOpen(false); alert("تم إرسال الطلب عبر واتساب بنجاح!"); }}
+          onClose={() => setCartOpen(false)}
+          onSent={() => {
+            setCartOpen(false);
+            showToast("تم إرسال الطلب عبر واتساب بنجاح!");
+          }}
         />
       )}
 
