@@ -54,7 +54,6 @@ html, body {
   scroll-behavior: smooth;
   padding-bottom: 90px;
   overflow-x: hidden;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d8c8a7' fill-opacity='0.35'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
 button { border: none; background: none; cursor: pointer; font-family: inherit; color: inherit; outline: none; }
@@ -125,6 +124,11 @@ h1, h2, h3, h4 { font-weight: 800; line-height: 1.2; }
   border-bottom: 2px solid var(--primary-color); display: flex; align-items: center; justify-content: space-between;
 }
 .section-decorative { color: var(--primary-color); font-size: 1.2rem; }
+.category-banner {
+  width: 100%; border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1rem;
+  background-color: var(--surface-color); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);
+}
+.category-banner img { width: 100%; max-height: 220px; object-fit: cover; display: block; }
 .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
 
 .menu-card {

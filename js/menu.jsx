@@ -316,6 +316,11 @@ function MenuPage({ categories, items, settings, onAdd }) {
               <span>{cat.name}</span>
               <span className="section-decorative">❖</span>
             </h2>
+            {cat.bannerImage && (
+              <div className="category-banner">
+                <img src={cat.bannerImage} alt={cat.name} loading="lazy" />
+              </div>
+            )}
             <div className="menu-grid">
               {catItems.map((it) => (
                 <ItemCard key={it.id} item={it} currency={settings.currency} onAdd={(payload) => onAdd(it, payload)} />
