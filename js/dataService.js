@@ -183,10 +183,4 @@ const DataService = {
     });
     return result.url;
   },
-
-  // بتدور في فولدر الصور على Drive عن أي صورة اسمها مطابق لاسم
-  // صنف موجود في المنيو، وبتربطهم تلقائيًا من غير رفع يدوي
-  matchImages() {
-    return DataService._post("matchImages", {});
-  },
 };

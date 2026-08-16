@@ -132,20 +132,6 @@ function DashboardCategories({ categories, setCategories, items, setItems, selec
   const [dragId, setDragId] = useState(null);
   const [editingCat, setEditingCat] = useState(null); // {id?, name, bannerImage}
   const [saving, setSaving] = useState(false);
-  const [matching, setMatching] = useState(false);
-
-  async function matchImages() {
-    setMatching(true);
-    try {
-      const res = await DataService.matchImages();
-      setItems(res.items);
-      alert(`تم ربط ${res.matched} صورة من أصل ${res.total} صنف.${res.matched < res.total ? " الأصناف الباقية مفيهاش صورة بنفس الاسم بالظبط في فولدر Drive." : ""}`);
-    } catch (err) {
-      alert("تعذر مطابقة الصور: " + err.message);
-    } finally {
-      setMatching(false);
-    }
-  }
 
   async function persistCats(list) {
     setSaving(true);
@@ -208,19 +194,7 @@ function DashboardCategories({ categories, setCategories, items, setItems, selec
   const catItems = selectedCat ? items.filter((i) => i.categoryId === selectedCat) : [];
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="bg-white rounded-2xl border border-gray-100 p-4 flex items-center justify-between gap-3 flex-wrap">
-        <div>
-          <h3 className="font-bold text-[#5c4326] text-sm">مطابقة صور المنتجات تلقائيًا</h3>
-          <p className="text-xs text-gray-500 mt-0.5">
-            لو رفعت صور المنتجات على فولدر Drive بنفس أسماء الأصناف بالظبط، دوس الزرار ده وهيتم ربطها كلها دفعة واحدة.
-          </p>
-        </div>
-        <button disabled={matching} onClick={matchImages} className="text-xs bg-samaq-blue disabled:opacity-60 text-white rounded-full px-4 py-2 font-bold shrink-0">
-          {matching ? "جارِ المطابقة..." : "طابِق الصور من Drive"}
-        </button>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div className="bg-white rounded-2xl border border-gray-100 p-4">
         <div className="flex items-center justify-between mb-3">
           <h3 className="font-bold text-[#5c4326]">التصنيفات {saving && <span className="text-[10px] text-gray-400 font-normal">(جارِ الحفظ...)</span>}</h3>
@@ -269,7 +243,6 @@ function DashboardCategories({ categories, setCategories, items, setItems, selec
       </div>
 
       <DashboardItems categoryId={selectedCat} items={catItems} allItems={items} setItems={persistItems} />
-      </div>
     </div>
   );
 }
